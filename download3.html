@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CSV to HTML Table</title>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>CSV to HTML Table</h1>
+  <table id="csvTable">
+    <thead>
+      <tr id="tableHeader">
+        <!-- Table header will be dynamically generated -->
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+      <!-- Table body will be dynamically generated -->
+    </tbody>
+  </table>
+
+  <script>
+    // Function to read data from the CSV file
+    function readDataFromCSV() {
+      return new Promise((resolve, reject) => {
+        const url = 'm_downloadlist.csv';
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+
+        xhr.onload = function(e) {
+          const csvData = xhr.responseText;
+          const lines = csvData.split('\n');
+          const jsonData = [];
+
+          for (let i = 0; i < lines.length; i++) {
+            const cells = lines[i].split(',');
+            jsonData.push(cells);
+          }
+
+          resolve(jsonData);
+        };
+
+        xhr.onerror = function(e) {
+          reject(xhr.statusText);
+        };
+
+        xhr.send();
+      });
+    }
+
+    // Function to create the HTML table
+    function createHTMLTable(data) {
+      const tableHeaderRow = document.getElementById('tableHeader');
+      const tableBody = document.getElementById('tableBody');
+
+      // Create table header
+      const headerRow = document.createElement('tr');
+      for (const headerCell of data[0]) {
+        const th = document.createElement('th');
+        th.textContent = headerCell;
+        headerRow.appendChild(th);
+      }
+      tableHeaderRow.appendChild(headerRow);
+
+      // Create table body rows
+      for (let i = 1; i < data.length; i++) {
+        const tableRow = document.createElement('tr');
+        for (const cellValue of data[i]) {
+          const td = document.createElement('td');
+          td.textContent = cellValue;
+          tableRow.appendChild(td);
+        }
+        tableBody.appendChild(tableRow);
+      }
+    }
+
+    // Call the function to read data from the CSV file and create the HTML table
+    readDataFromCSV()
+      .then(data => createHTMLTable(data))
+      .catch(error => console.error(error));
+  </script>
+</body>
+</html>
