@@ -21,6 +21,7 @@ body {
 }
 
 #layout-menu a {
+	color: white; 
 	line-height: 1.5em;
 	margin-left: 0.5em;
 }
@@ -59,6 +60,7 @@ a:hover {
 	border-bottom: 1px white dotted;
 	text-decoration: underline;
 }
+
 
 layout-menu a.current:link, #layout-menu a.current:visited {
 	color: white;  	
