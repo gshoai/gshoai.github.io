@@ -183,6 +183,12 @@
         $("#cnt39").text(starsCount);
       });
 
+      var url40 = "https://api.github.com/repos/cvlab-stonybrook/ExRAC";
+      $.getJSON(url40, function(data) {
+        var starsCount = data.stargazers_count;
+        $("#cnt40").text(starsCount);
+      });
+
     });
   </script>
 <table>
@@ -192,6 +198,14 @@
       <th>Model</th>
       <th>Starred</th>
    </tr>
+   <tr>
+      <td>&#x2022; <a href=https://github.com/cvlab-stonybrook/ExRAC> Diverse and Wearable Counting (DWC)</a>, a method and a dataset for counting human actions of interest using sensor data from wearable devices, allowing users to provide exemplars of the actions they want to count by vocalizing pre-defined sounds "one", "two", and "three". </td>
+      <td style="text-align: center">&check;</td>
+      <td style="text-align: center">&check;</td>
+      <td style="text-align: right"><span id = "cnt40">...</span>&#9733;</td>
+   </tr>
+   <tr><td></td></tr>
+   <tr><td></td></tr>
    <tr>
       <td>&#x2022; <a href=https://github.com/Yifehuang97/ICACount> ICACount</a>. A GUI and algorithm for interactive counting</td>
       <td style="text-align: center"></td>
@@ -509,7 +523,7 @@
 
 <div id="footer">
 <div id="footer-text">
-Page generated 2024-01-29 21:33:56 ACDT, by <a href="https://github.com/wsshin/jemdoc_mathjax" target="blank">jemdoc+MathJax</a>.
+Page generated 2024-02-20 10:12:16 ACDT, by <a href="https://github.com/wsshin/jemdoc_mathjax" target="blank">jemdoc+MathJax</a>.
 </div>
 </div>
 </td>
